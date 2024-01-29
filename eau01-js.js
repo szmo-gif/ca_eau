@@ -6,7 +6,6 @@ const twoElements = () => {
         for (let code2 = 48; code2 <= 57; code2++) {
             for (let code3 = 48; code3 <= 57; code3++) {
                 for (let code4 = 48; code4 <= 57; code4++) {
-                    // Vérifier si ce n'est pas "00 00" et "99 99"
                     if (!(code === 48 && code2 === 48 && code3 === 48 && code4 === 48) &&
                         !(code === 57 && code2 === 57 && code3 === 57 && code4 === 57)) {
                         results += String.fromCharCode(code) + String.fromCharCode(code2) + ' ' + String.fromCharCode(code3) + String.fromCharCode(code4) + ',';
