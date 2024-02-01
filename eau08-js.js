@@ -7,7 +7,7 @@ const numeriqueOnly = (userInput) => {
     for (let i = 0; i < userInput.length; i++) {
     const caractere = userInput[i];
     
-        if (isNaN(caractere)) {
+        if (!(caractere >= '0' && caractere <= '9')) {  //(isNaN(caractere)) {
             return false;
         }
     }
