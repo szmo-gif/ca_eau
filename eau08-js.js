@@ -7,7 +7,7 @@ const numeriqueOnly = (userInput) => {
     for (let i = 0; i < userInput.length; i++) {
     const caractere = userInput[i];
     
-        if (!(caractere >= '0' && caractere <= '9')) {  //(isNaN(caractere)) {
+        if (!(caractere >= '0' && caractere <= '9')) {  //(isNaN(caractere)) 
             return false;
         }
     }
@@ -15,6 +15,18 @@ const numeriqueOnly = (userInput) => {
 return true;
 };
 
-const userInput = userString();
+const handlingError =(userInput) => {
+    if (!userInput){
+        throw new Error ("Ecrivez une chaine de caractère");
+    }
+    return userInput;
+}
+try {
+    const userInput = userString();
+    handlingError(userInput);
 
-console.log(numeriqueOnly(userInput));
+    console.log(numeriqueOnly(userInput));
+
+} catch (error) {
+    console.error(error.message);
+}
