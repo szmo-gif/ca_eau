@@ -13,7 +13,7 @@ const numeriqueOnly = (userInput) => {
     }
 
 return true;
-};
+}
 
 const handlingError =(userInput) => {
     if (!userInput){
