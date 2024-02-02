@@ -26,13 +26,13 @@ const handlingError = (strings) => {
     if (!strings || isNaN(strings[0]) || isNaN(strings[1])) {
         throw new Error("Erreur : veuillez écrire deux nombres valides.");
     }
-    return strings;
+    
 }
 
 try {
     const strings = userStrings();
-    const validatedStrings = handlingError(strings);
-    const result = minMax(validatedStrings);
+    handlingError(strings);
+    const result = minMax(strings);
 
     console.log(result);
 } catch (error) {
