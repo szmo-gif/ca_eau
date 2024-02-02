@@ -35,11 +35,9 @@ const errorNotNumber = (userString) => {
 
 }
 
-try {
     const userInput = userString();
     errorNotNumber(userInput);
     const result = nextPrimeNumber(userInput);
     console.log(result);
-} catch (error) {
-    console.error(error.message);
-}
+
+
