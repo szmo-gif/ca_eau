@@ -12,6 +12,5 @@ const reverseString = (string) => {
    return result
 }
 
-const inputString = userString();
 
-console.log(reverseString(inputString));
+console.log(reverseString(userString()));
