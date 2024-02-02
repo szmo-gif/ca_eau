@@ -8,9 +8,17 @@ const minMax = () => {
     const userString2 = strings[1];
 
     let result = '';
-    for (let i = userString1; i < userString2; i++) {
-        result += i + ' ';
+
+    if (userString1 < userString2) {
+        for (let i = userString1; i < userString2; i++) {
+            result += i + ' ';
+        }
+    } else {
+        for (let i = userString2; i < userString1; i++) {
+            result += i + ' ';
+        }
     }
+
     return result;
 }
 
