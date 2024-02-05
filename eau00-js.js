@@ -15,12 +15,12 @@ const threeDigitCombination = () => {
 
 const errorWithoutArguments = () => {
 
-if (process.argv[2]) {
-    console.log("Erreur : L'argument n'est pas nécessaire pour ce script.");
-    
-} else {
-    console.log(threeDigitCombination());
-}
+    if (process.argv[2]) {
+        console.log("Erreur : L'argument n'est pas nécessaire pour ce script.");
+        
+    } else {
+        console.log(threeDigitCombination());
+    }
 }
 
 errorWithoutArguments();
