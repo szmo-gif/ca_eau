@@ -31,5 +31,4 @@ const handleError =(array) => {
 }
 
 handleError(numberArray());
-//console.log(selectionSort(numberArray()));
 selectionSort(numberArray())
