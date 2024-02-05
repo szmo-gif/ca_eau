@@ -1,10 +1,10 @@
 const userString = () => {
-    return process.argv.slice(2);
+    return process.argv.slice(2); 
 } 
 
-selectionSort = (userInput) => {
+const selectionSort = (userInput) => {
 
-    for (let i = 0; i < userInput.length - 1; i++) {
+    for (let i = 0; i < userInput.length; i++) {
     let minIndex = i;
 
         for (let j = i + 1; j < userInput.length; j++) {
