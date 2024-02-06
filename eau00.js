@@ -11,7 +11,7 @@ const threeDigitCombination = () => {
     }
 }
 
-const errorWithoutArguments = () => {
+const handleError = () => {
 
     if (process.argv[2]) {
         console.log("Erreur : L'argument n'est pas nécessaire pour ce script.");
