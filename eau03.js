@@ -1,4 +1,4 @@
-const userWord = () => {
+const numberArray = () => {
     return process.argv[2];
 }
 
@@ -29,5 +29,5 @@ const handleError = () => {
     process.exit(1)
 }
 
-handleError(userWord())
-caractereLast(Fibonacci(userWord()))
+handleError(numberArray())
+caractereLast(Fibonacci(numberArray()))
