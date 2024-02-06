@@ -29,5 +29,5 @@ const handleError = () => {
     process.exit(1)
 }
 
-handleError(numberArray())
+handleError()
 caractereLast(Fibonacci(numberArray()))
