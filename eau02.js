@@ -3,14 +3,20 @@ const wordArray = () => {
 }
 
 
-const reverseString = (string) => {
+const reverseArray = (array) => {
     let result =''
- for (let i = string.length - 1; i >= 0; i--) {
-        result += string[i] + '\n';
+ for (let i = array.length - 1; i >= 0; i--) {
+        result += array[i] + '\n';
         
     }
-   return result
+   return console.log(result);
 }
 
+const handleError = (array) => {
+   if (!array) {
+      console.log("Erreur : écrivez une chaine de caractère.");
+   }
+}
 
-console.log(reverseString(wordArray()));
+handleError(wordArray())
+reverseArray(wordArray())
