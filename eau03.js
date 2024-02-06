@@ -1,4 +1,4 @@
-const userString = () => {
+const userWord = () => {
     return process.argv[2];
 }
 
@@ -19,17 +19,15 @@ const Fibonacci = (number) => {
 const caractereLast = (results) => {
     let indexLast = results.length - 1;
     let caractereLast = results[indexLast];
-    return caractereLast;
+    return console.log(caractereLast);
 }
 
-const error = () => {
+const handleError = () => {
     if (!process.argv[2] || process.argv[2] < 0 || isNaN(process.argv[2])) {
         console.log("-1");
-    } else {
-        let inputString = parseInt(userString());
-        let FibonacciSequence = Fibonacci(inputString);
-        console.log(caractereLast(FibonacciSequence));
     }
+    process.exit(1)
 }
 
-error();
+handleError(userWord())
+caractereLast(Fibonacci(userWord()))

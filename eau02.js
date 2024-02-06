@@ -13,7 +13,7 @@ const reverseArray = (array) => {
 }
 
 const handleError = (array) => {
-   if (!array) {
+   if (array.length === 0) {
       console.log("Erreur : écrivez une chaine de caractère.");
    }
 }
