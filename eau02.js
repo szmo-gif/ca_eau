@@ -1,4 +1,4 @@
-const userString = () => {
+const wordArray = () => {
    return process.argv.slice(2);
 }
 
@@ -13,4 +13,4 @@ const reverseString = (string) => {
 }
 
 
-console.log(reverseString(userString()));
+console.log(reverseString(wordArray()));

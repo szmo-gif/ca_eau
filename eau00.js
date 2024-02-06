@@ -10,7 +10,7 @@ const threeDigitCombination = () => {
         }
     }
 
-return result.slice(0, -1); // Retire la virgule à la fin
+    return result.slice(0, -1); // Retire la virgule à la fin
 }
 
 const errorWithoutArguments = () => {
