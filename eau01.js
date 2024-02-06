@@ -15,7 +15,7 @@ const twoElements = () => {
         }
     } 
 
-    return results.slice(0, -1);
+   // return results.slice(0, -1);
 }
 
 const errorWithoutArguments = () => {

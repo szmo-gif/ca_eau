@@ -9,9 +9,11 @@ const threeDigitCombination = () => {
             }
         }
     }
+
+return result.slice(0, -1); // Retire la virgule à la fin
 }
 
-const handleError = () => {
+const errorWithoutArguments = () => {
 
     if (process.argv[2]) {
         console.log("Erreur : L'argument n'est pas nécessaire pour ce script.");
