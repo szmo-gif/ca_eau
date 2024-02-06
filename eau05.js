@@ -1,9 +1,9 @@
-const userStrings = () => {
+const userArray = () => {
     return [process.argv[2], process.argv[3]];
 }
 
 const stringInString = () => {
-    let strings = userStrings();
+    let strings = userArray();
     let string1 = strings[0];
     let string2 = strings[1];
 
@@ -16,19 +16,12 @@ const stringInString = () => {
     return false;
 }
 
-const errorNotString = (strings) => {
+const handleError = (strings) => {
     if (!strings || strings.some(str => typeof str !== 'string')) {
-        throw new Error("Veuillez entrer deux chaînes de caractères.");
+        console.log("Veuillez entrer deux chaînes de caractères.");
+        process.exit(1)
     }
 }
 
-try {
-    const userInput = userStrings();
-    errorNotString(userInput);
-
-    const result = stringInString(userInput);
-    console.log(result);
-
-} catch (error) {
-    console.error(error.message);
-}
+handleError(userArray());
+console.log(stringInString(userArray()));
