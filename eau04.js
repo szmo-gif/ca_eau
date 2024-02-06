@@ -1,4 +1,4 @@
-const userString = () => {
+const numberArray = () => {
     return parseInt(process.argv[2]);
 }
 
@@ -16,28 +16,24 @@ const isPrimeNumber = (number) => {
     return true;
 }
 
-const nextPrimeNumber = (userNumber) => { 
-    while (!isPrimeNumber(userNumber + 1)) {
-        userNumber++;
+const nextPrimeNumber = (numberArray) => { 
+    while (!isPrimeNumber(numberArray + 1)) {
+        numberArray++;
     }
 
-    return userNumber + 1;
+    return console.log(numberArray + 1);
 }
 
-const errorNotNumber = (userString) => {
-    if (isNaN(userString)) {
-        throw new Error ("Erreur : veuillez choisir un nombre entier.");
+const handleError = (numberArray) => {
+    if (isNaN(numberArray)) {
+       console.log("Erreur : veuillez choisir un nombre entier.");
     }
 
-    if (userString <= 1) {
-        throw new Error ("Erreur : veuillez chosir un nombre positif et qui ne soit pas égal à 0 ou 1")
+    if (numberArray <= 1) {
+        console.log("Erreur : veuillez chosir un nombre positif et qui ne soit pas égal à 0 ou 1")
     }
-
+    process.exit(1);
 }
 
-    const userInput = userString();
-    errorNotNumber(userInput);
-    const result = nextPrimeNumber(userInput);
-    console.log(result);
-
-
+handleError(numberArray());
+nextPrimeNumber(numberArray());
