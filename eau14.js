@@ -1,48 +1,27 @@
 const wordsArray = () => {
-    return process.argv.slice(2);
-};
-
-const translateWordInAscii = (wordsArray) => {
+    let user = process.argv.slice(2);
     let array = [];
-    for (let i = 0; i < wordsArray.length; i++) {
-        let asciiValue = wordsArray[i].charCodeAt(0) + wordsArray[i].slice(1);
-        array.push(asciiValue);
-    }
+
+    user.forEach(element => {
+        let words = element.split(' ');
+        array.push(words);
+    });
     return array;
 };
 
-const translateAsciiInWord = (asciiArray) => {
-    let array = [];
-    for (let i = 0; i < asciiArray.length; i++) {
-        let wordValue = String.fromCharCode(asciiArray[i]) + asciiArray[i].slice(1);
-        array.push(wordValue);
-    }
-    return array;
-};
-
-const selectionSort = (array) => {
-    for (let i = 0; i < array.length; i++) {
-        let minIndex = i;
-        for (let j = i + 1; j < array.length; j++) {
-            if (parseInt(array[j]) < parseInt(array[minIndex])) {
-                minIndex = j;
-            }
-        }
-        if (minIndex !== i) {
-            let temp = array[i];
-            array[i] = array[minIndex];
-            array[minIndex] = temp;
+const asciiComparison = (a, b) => {
+    for (let i = 0; i < Math.min(a.length, b.length); i++) {
+        if (a.charCodeAt(i) !== b.charCodeAt(i)) {
+            return a.charCodeAt(i) - b.charCodeAt(i);
         }
     }
-    return array;
+    return a.length - b.length;
 };
 
-const words = wordsArray();
-const asciiValues = translateWordInAscii(words);
-const sortedAsciiValues = selectionSort(asciiValues);
-const sortedWords = translateAsciiInWord(asciiValues);
-console.log(words);
-console.log(asciiValues);
-console.log(sortedWords);
-//console.log(sortedAsciiValues);
-//console.log(sortedWords.join(' '));
+const user = wordsArray();
+user.forEach(array => {
+    array.sort(asciiComparison);
+    console.log(array); // Afficher les mots triés pour chaque tableau interne
+});
+
+console.log(user); // Afficher les tableaux de mots triés
