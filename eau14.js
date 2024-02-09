@@ -1,12 +1,6 @@
 const wordsArray = () => {
-    let user = process.argv.slice(2);
-    let array = [];
-
-    user.forEach(element => {
-        let words = element.split('');
-        array.push(words);
-    });
-    return array;
+    let arrayUser = process.argv.slice(2);
+    return arrayUser;
 };
 
 const translateLetterToAscii = (letter) => {
@@ -20,7 +14,7 @@ const translateAsciiToLetter = (asciiValue) => {
 const translateWordToAscii = (word) => {
     let asciiArray = [];
 
-    word.forEach(letter => {
+    word.split('').forEach(letter => {
         let asciiValue = translateLetterToAscii(letter);
         asciiArray.push(asciiValue);
     });
@@ -39,18 +33,18 @@ const translateAsciiToWord = (asciiArray) => {
     return word;
 };
 
-const sortWordsByAscii = (wordsArray) => {
-    let asciiWords = [];
-
-    wordsArray.forEach(word => {
-        let asciiWord = translateWordToAscii(word);
-        asciiWords.push(asciiWord);
-    });
-
-    asciiWords.sort();
-
-    return asciiWords;
-};
+const bubbleSort = (array) => {
+    for (let i = 0; i < array.length - 1; i++) {
+        for (let j = 0; j < array.length - i - 1; j++) {
+            if (parseInt(array[j]) > parseInt(array[j + 1])) {
+                let change = array[j];
+                array[j] = array[j + 1];
+                array[j + 1] = change;
+            }
+        }
+    }
+    return array;
+}
 
 const handleError = () => {
     if (!process.argv.slice(2)) {
@@ -59,9 +53,17 @@ const handleError = () => {
     }
 }
 
-const user = wordsArray();
-handleError(user)
-const sortedAsciiWords = sortWordsByAscii(user);
-const sortedWords = sortedAsciiWords.map(word => translateAsciiToWord(word));
 
-console.log(sortedWords.join(' '));
+const arrayUser = wordsArray();
+handleError(arrayUser);
+
+// Convertir les mots en ASCII
+const translateInAscii = arrayUser.map(word => translateWordToAscii(word));
+
+// Trier les valeurs ASCII
+const sort = bubbleSort(translateInAscii);
+
+// Reconvertir les valeurs ASCII en mots
+const translateInWords = sort.map(asciiArray => translateAsciiToWord(asciiArray));
+
+console.log(translateInWords.join(' '));
