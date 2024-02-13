@@ -1,5 +1,5 @@
-const numberArray = () => {
-    return process.argv[2];
+const getArgument = () => {
+    return process.argv.slice(2);
 }
 
 const Fibonacci = (number) => {
@@ -7,7 +7,6 @@ const Fibonacci = (number) => {
     let a = 0;
     let b = 1;
     for (let i = 0; i <= number; i++) {
-
         results.push(a);
         let c = a + b;
         a = b;
@@ -19,15 +18,21 @@ const Fibonacci = (number) => {
 const caractereLast = (results) => {
     let indexLast = results.length - 1;
     let caractereLast = results[indexLast];
-    return console.log(caractereLast);
+    return caractereLast;
 }
 
-const handleError = () => {
-    if (!process.argv[2] || process.argv[2] < 0 || isNaN(process.argv[2])) {
-        console.log("-1");
+const validArgument = (argument) => {
+    if (argument.length > 0 && !isNaN(argument) && parseInt(argument) >= 0) {
+        return caractereLast(Fibonacci(parseInt(argument)));
+    } else {
+        return -1;
     }
-    process.exit(1)
 }
 
-handleError()
-caractereLast(Fibonacci(numberArray()))
+const applyFunction = () => {
+    const argument = getArgument();
+    const validResult = validArgument(argument);
+    console.log(validResult);
+}
+
+applyFunction();
