@@ -1,29 +1,16 @@
-const twoElements = () => {
-    let results = '';
+function twoElementsCombination() {
+    let results = [];
 
-    // Utilisation de ASCII
-    for (let code = 48; code <= 57; code++) {
-        for (let code2 = 48; code2 <= 57; code2++) {
-            for (let code3 = 48; code3 <= 57; code3++) {
-                for (let code4 = 48; code4 <= 57; code4++) {
-                    if (!(code === 48 && code2 === 48 && code3 === 48 && code4 === 48) &&
-                        !(code === 57 && code2 === 57 && code3 === 57 && code4 === 57)) {
-                        results += String.fromCharCode(code) + String.fromCharCode(code2) + ' ' + String.fromCharCode(code3) + String.fromCharCode(code4) + ',';
-                    }
-                }
-            }
+    for (let i = 0; i <= 98; i++) {
+        for (let j = i + 1; j <= 99; j++) {
+            // Formatage pour ajouter un zéro devant les nombres < 10
+            let firstNumber = i < 10 ? `0${i}` : `${i}`;
+            let secondNumber = j < 10 ? `0${j}` : `${j}`;
+            results.push(`${firstNumber} ${secondNumber}` + ',');
         }
-    } 
-
-    return results.slice(0, -1);
-}
-
-const errorWithoutArguments = () => {
-    if (process.argv[2]) {
-        console.log("Erreur : L'argument n'est pas nécessaire dans le script.");
-    } else {
-        console.log(twoElements());
     }
+
+    return results.join(" ") ;
 }
 
-errorWithoutArguments();
+console.log(twoElementsCombination());
