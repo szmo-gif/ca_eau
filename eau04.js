@@ -1,7 +1,9 @@
-const numberArray = () => {
+//parsing
+const getArgument = () => {
     return parseInt(process.argv[2]);
 }
 
+//fonction principal 
 const isPrimeNumber = (number) => {
     if (number <= 1) {
         return false;
@@ -21,19 +23,37 @@ const nextPrimeNumber = (numberArray) => {
         numberArray++;
     }
 
-    return console.log(numberArray + 1);
+    return numberArray + 1;
 }
 
-const handleError = (numberArray) => {
-    if (isNaN(numberArray)) {
-       console.log("Erreur : veuillez choisir un nombre entier.");
+//gestion d'erreur 
+const validArgumentIsNumber = () => {
+    if (!isNaN(process.argv[2])) {
+        return nextPrimeNumber(getArgument())
     }
+    else{
+        console.log("Erreur : veuillez choisir un nombre entier.");
+        process.exit(1)
+    }
+}
 
-    if (numberArray <= 1) {
+const validNumber =() => {
+    if (process.argv[2] >= 1) {
+       return nextPrimeNumber(getArgument())
+    }
+    else{
         console.log("Erreur : veuillez chosir un nombre positif et qui ne soit pas égal à 0 ou 1")
+        process.exit(1)
     }
-    process.exit(1);
 }
 
-handleError(numberArray());
-nextPrimeNumber(numberArray());
+//résolution
+const applyFunction = () => {
+    const argument = getArgument();
+    const validArgument = validNumber(validArgumentIsNumber(argument));
+
+    return console.log(validArgument);
+
+}
+
+applyFunction()
