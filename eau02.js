@@ -1,22 +1,30 @@
-const wordArray = () => {
-   return process.argv.slice(2);
+const getArgument = () => {
+   const argument = process.argv.slice(2);
+   return argument;
 }
 
-
-const reverseArray = (array) => {
-    let result =''
- for (let i = array.length - 1; i >= 0; i--) {
-        result += array[i] + '\n';
-        
+const reverseArgument = (argument) => {
+    let reversed = [];
+    for (let i = argument.length - 1; i >= 0; i--) {
+        reversed.push(argument[i]);
     }
-   return console.log(result);
+    return reversed;
 }
 
-const handleError = (array) => {
-   if (array.length === 0) {
-      console.log("Erreur : écrivez une chaine de caractère.");
+const checkEmptyArgument = (argument) => {
+   if (argument.length) {
+      return reverseArgument(argument);
+   } else {
+      console.log("Erreur : écrivez une chaîne de caractères");
    }
 }
 
-handleError(wordArray())
-reverseArray(wordArray())
+const applyFunction = () => {
+   const argument = getArgument();
+   const reversed = checkEmptyArgument(argument);
+   if (reversed) {
+      console.log(reversed.join(' '));
+   }
+}
+
+applyFunction()
