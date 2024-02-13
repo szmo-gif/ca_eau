@@ -1,7 +1,9 @@
+//parcing
 const getArgument = () => {
     return process.argv.slice(2);
 }
 
+//principal function
 const stringInString = (string1, string2) => {
     for (let i = 0; i <= string1.length - string2.length; i++) {
         let match = true;
@@ -19,6 +21,7 @@ const stringInString = (string1, string2) => {
     return false;
 }
 
+//handle error
 const validTwoStrings = (strings) => {
     if (strings.length === 2 && strings.every(str => typeof str === 'string')) {
         return strings;
@@ -28,6 +31,7 @@ const validTwoStrings = (strings) => {
     }
 }
 
+//apply function
 const applyFunction = () => {
     const userArguments = getArgument();
     const validArguments = validTwoStrings(userArguments);
@@ -36,4 +40,5 @@ const applyFunction = () => {
     console.log(includes);
 }
 
+//affichage
 applyFunction();
