@@ -1,9 +1,11 @@
-const numberArray = () => {
-    return [parseInt(process.argv[2]), parseInt(process.argv[3])];
+//parcing
+const getArgument = () => {
+    return process.argv.slice(2)
 }
 
+//principal function
 const minMax = () => {
-    const numbers = numberArray();
+    const numbers = getArgument();
     const number1 = numbers[0];
     const number2 = numbers[1];
 
@@ -19,15 +21,24 @@ const minMax = () => {
         }
     }
 
-    return console.log(result);
+    return result;
 }
 
-const handleError = (numbers) => {
-    if (!numbers || isNaN(numbers[0]) || isNaN(numbers[1])) {
-        console.log("Erreur : veuillez écrire deux nombres valides.");
+//handle error 
+const isValidNumbers = () => {
+    if (!process.argv.slice(2) || isNaN(process.argv.slice(2)[0]) || isNaN(process.argv.slice(2)[1]) || process.argv.slice(2).length !== 2) {
+         console.log("Erreur : veuillez écrire deux nombres valides.");
     }
-    
+    process.exit(1)
 }
 
-handleError(numberArray());
-minMax(numberArray());
+// apply function
+const applyFunction = () => {
+    isValidNumbers()
+    const argument = getArgument()
+    const principalFunction = minMax(argument)
+    
+    console.log(principalFunction);
+}
+
+applyFunction()

@@ -1,7 +1,9 @@
-const wordsArray = () => {
+//parcing
+const getArgument = () => {
     return process.argv.slice(2);
 };
 
+//principal function
 const indexWanted = (array) => {
     const lastArgument = array[array.length - 1];
     let position = -1;
@@ -12,12 +14,21 @@ const indexWanted = (array) => {
         }
     }
     
+    //handle error
     if (position === -1) {
        console.log("-1");
        process.exit(1)
     }
 
-    return console.log(position);
+    return position;
 };
 
-indexWanted(wordsArray());
+//apply function
+const applyFunction = () => {
+    const argument = getArgument();
+    const principalFunction = indexWanted(argument)
+
+    console.log(principalFunction);
+}
+
+applyFunction();

@@ -1,7 +1,9 @@
-const numberArray = () => {
+//parcing
+const getArgument = () => {
     return process.argv.slice(2);
 } 
 
+//principal function
 const minAbsoluteDifference = (array) => {
     let differences = "";
     for (let i = 0; i < array.length; i++) {
@@ -19,6 +21,7 @@ const minAbsoluteDifference = (array) => {
 
     return console.log(result);
 }
+
 
 const handleError = (numbers) => {
     if (!numbers.length || numbers.some(isNaN)) {

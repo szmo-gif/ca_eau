@@ -1,8 +1,10 @@
-const numberArray = () => {
+//parcing
+const getArgument = () => {
   return process.argv[2];
 } 
 
-const numeriqueOnly = (array) => {
+//principal function
+const isNaN = (array) => {
 
     for (let i = 0; i < array.length; i++) {
     const caractere = array[i];
@@ -15,12 +17,20 @@ const numeriqueOnly = (array) => {
 return true;
 }
 
-const handleError =() => {
+//handle error 
+const validArgument =() => {
     if (!process.argv[2]){
         console.log("Ecrivez une chaine de caractère");
         process.exit(1)
     }
 }
 
-handleError();
-console.log(numeriqueOnly(numberArray()));
+const applyFunction = () => {
+    validArgument();
+    const argument = getArgument()
+    const principalFunction = isNaN(argument)
+
+    console.log(principalFunction);
+}
+
+applyFunction()
