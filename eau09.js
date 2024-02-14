@@ -27,14 +27,18 @@ const minMax = () => {
 //handle error 
 const isValidNumbers = () => {
     if (!process.argv.slice(2) || isNaN(process.argv.slice(2)[0]) || isNaN(process.argv.slice(2)[1]) || process.argv.slice(2).length !== 2) {
-         console.log("Erreur : veuillez écrire deux nombres valides.");
+         return false
     }
-    process.exit(1)
+    return true
 }
 
 // apply function
 const applyFunction = () => {
-    isValidNumbers()
+    if (!isValidNumbers()) {
+        console.log("Erreur : veuillez écrire deux nombres valides.");
+        return
+    }
+    
     const argument = getArgument()
     const principalFunction = minMax(argument)
     
