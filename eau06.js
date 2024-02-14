@@ -1,38 +1,53 @@
-const wordArray = () => {
-    return process.argv[2].toLowerCase();
-} 
+//parsing
+const getArgument = () => {
+    const argument = process.argv.slice(2).join(' ').toLowerCase();
+    return argument;
+}
 
+//principal function
 const upperCaseOneOnTwo = (array) => {
-
-    const letters = array.split('');
-
+    const caractere = array.split('');
     let modifiedWord = '';
+    let nonWhitespaceCount = 0;
 
-    let nonWhitespaceCount = '';
-
-    for (let i = 0; i < letters.length; i++) {
-        if (letters[i] !== ' ') { 
+    for (let i = 0; i < caractere.length; i++) {
+        if (caractere[i] !== ' ') { // Vérifie si le caractère n'est pas un espace
+            // Vérifie si c'est le tour de capitaliser
             if (nonWhitespaceCount % 2 === 0) {
-            modifiedWord += letters[i].toUpperCase();
-            } 
-            else {
-            modifiedWord += letters[i];
+                // Si oui, convertit le caractère en majuscule en utilisant les valeurs ASCII
+                const charCode = caractere[i].charCodeAt(0);
+                if (charCode >= 97 && charCode <= 122) {
+                    // Si le caractère est une lettre minuscule
+                    modifiedWord += String.fromCharCode(charCode - 32);
+                } else {
+                    modifiedWord += caractere[i];
+                }
+            } else {
+                modifiedWord += caractere[i];
             }
             nonWhitespaceCount++;
-        } 
-        else {
+        } else {
             modifiedWord += ' '; 
         }
     }
-    return console.log(modifiedWord);
-    }
+    return modifiedWord;
+}
 
-const errorArgument =() => {
+//handle error 
+const errorArgument = () => {
     if (!process.argv[2] || !isNaN(process.argv[2])) {
-    console.log("veuillez écrire une chaine sans nombre");
-    process.exit(1)
+        console.log("Erreur : Veuillez écrire une chaîne sans nombre.");
+        process.exit(1)
     }
 }
 
-errorArgument();
-upperCaseOneOnTwo(wordArray());
+const applyFunction = () => {
+    errorArgument();
+    const argument = getArgument();
+    const principalFunction = upperCaseOneOnTwo(argument)
+
+    console.log(principalFunction);
+}
+
+applyFunction()
+
