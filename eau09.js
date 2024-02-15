@@ -1,14 +1,10 @@
-//parcing
+// parcing
 const getArgument = () => {
-    return process.argv.slice(2)
+    return process.argv.slice(2);
 }
 
-//principal function
-const minMax = () => {
-    const numbers = getArgument();
-    const number1 = numbers[0];
-    const number2 = numbers[1];
-
+// Fonction principale 
+const minMax = (number1, number2) => {
     let result = '';
 
     if (number1 < number2) {
@@ -24,25 +20,28 @@ const minMax = () => {
     return result;
 }
 
-//handle error 
+// gestion d'erreur 
 const isValidNumbers = () => {
-    if (!process.argv.slice(2) || isNaN(process.argv.slice(2)[0]) || isNaN(process.argv.slice(2)[1]) || process.argv.slice(2).length !== 2) {
-         return false
+    const numbers = process.argv.slice(2);
+    if (numbers.length !== 2 || isNaN(numbers[0]) || isNaN(numbers[1])) {
+        return false;
     }
-    return true
+    return true;
 }
 
-// apply function
+// Fonction pour appliquer les opérations
 const applyFunction = () => {
     if (!isValidNumbers()) {
         console.log("Erreur : veuillez écrire deux nombres valides.");
-        return
+        return;
     }
-    
-    const argument = getArgument()
-    const principalFunction = minMax(argument)
-    
-    console.log(principalFunction);
+
+    const numbers = getArgument();
+    const number1 = parseInt(numbers[0]);
+    const number2 = parseInt(numbers[1]);
+    const result = minMax(number1, number2);
+
+    console.log(result);
 }
 
-applyFunction()
+applyFunction();

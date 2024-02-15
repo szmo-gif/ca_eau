@@ -1,35 +1,43 @@
-//parcing
+// parcing
 const getArgument = () => {
     return process.argv.slice(2);
 } 
 
-//principal function
+// Fonction principale 
 const minAbsoluteDifference = (array) => {
-    let differences = "";
+    let minDifference = Infinity;
+
     for (let i = 0; i < array.length; i++) {
         for (let j = i + 1; j < array.length; j++) {
-            differences += Math.abs(parseInt(array[i]) - parseInt(array[j])) + " ";
+            const diff = Math.abs(array[i] - array[j]);
+            if (diff < minDifference) {
+                minDifference = diff;
+            }
         }
     }
 
-    let result = Infinity;
-    const numberArray = differences.trim().split(" ").map(Number);
-
-    if (numberArray.length > 0) {
-        result = Math.min.apply(null, numberArray);
-    }
-
-    return console.log(result);
+    return minDifference;
 }
 
-
-const handleError = (numbers) => {
+// gestion d'erreur
+const isNotValidNumbers = () => {
+    const numbers = getArgument();
     if (!numbers.length || numbers.some(isNaN)) {
         console.log("Erreur : veuillez écrire que des nombres entiers.");
-        process.exit(1);
+        return true;
     }
+    return false;
 }
 
+// Fonction pour appliquer les opérations
+const applyFunction = () => {
+    if (isNotValidNumbers()) {
+        return;
+    }
+    
+    const numbers = getArgument();
+    console.log(minAbsoluteDifference(numbers));
+}
 
-handleError(numberArray());
-minAbsoluteDifference(numberArray());
+applyFunction();
+
