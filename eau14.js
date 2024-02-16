@@ -1,8 +1,10 @@
-const wordsArray = () => {
+//parcing
+const getArgument = () => {
     let arrayUser = process.argv.slice(2);
     return arrayUser;
 };
 
+//translate function for caractere
 const translateLetterToAscii = (letter) => {
     return letter.charCodeAt(0);
 };
@@ -11,13 +13,14 @@ const translateAsciiToLetter = (asciiValue) => {
     return String.fromCharCode(asciiValue);
 };
 
+//translate function for words
 const translateWordToAscii = (word) => {
     let asciiArray = [];
 
-    word.split('').forEach(letter => {
-        let asciiValue = translateLetterToAscii(letter);
+    for (let i = 0; i < word.length; i++) {
+        let asciiValue = translateLetterToAscii(word[i]);
         asciiArray.push(asciiValue);
-    });
+    }
 
     return asciiArray;
 };
@@ -25,14 +28,15 @@ const translateWordToAscii = (word) => {
 const translateAsciiToWord = (asciiArray) => {
     let word = '';
 
-    asciiArray.forEach(asciiValue => {
-        let letter = translateAsciiToLetter(asciiValue);
+    for (let i = 0; i < asciiArray.length; i++) {
+        let letter = translateAsciiToLetter(asciiArray[i]);
         word += letter;
-    });
+    }
 
     return word;
 };
 
+//sort function
 const bubbleSort = (array) => {
     for (let i = 0; i < array.length - 1; i++) {
         for (let j = 0; j < array.length - i - 1; j++) {
@@ -44,26 +48,38 @@ const bubbleSort = (array) => {
         }
     }
     return array;
-}
+};
 
-const handleError = () => {
-    if (!process.argv.slice(2)) {
-        console.log("Ecrivez une ou des chaines de caractères");
-        process.exit(1)
+//handle error 
+const isNotValidArgument = () => {
+    const arguments = getArgument();
+    if (!arguments.length) {
+        console.log("Erreur : veuillez écrire des chaines de caractères.");
+        return true;
     }
-}
+    return false;
+};
 
+//apply function
+const applyFunction = () => {
+    if (isNotValidArgument()) {
+        return;
+    }
 
-const arrayUser = wordsArray();
-handleError(arrayUser);
+    const arguments = getArgument();
+    let translateInAscii = [];
+    for (let i = 0; i < arguments.length; i++) {
+        translateInAscii.push(translateWordToAscii(arguments[i]));
+    }
 
-// Convertir les mots en ASCII
-const translateInAscii = arrayUser.map(word => translateWordToAscii(word));
+    let sort = bubbleSort(translateInAscii);
 
-// Trier les valeurs ASCII
-const sort = bubbleSort(translateInAscii);
+    let translateInWords = [];
+    for (let i = 0; i < sort.length; i++) {
+        translateInWords.push(translateAsciiToWord(sort[i]));
+    }
 
-// Reconvertir les valeurs ASCII en mots
-const translateInWords = sort.map(asciiArray => translateAsciiToWord(asciiArray));
+    console.log(translateInWords.join(' '));
+};
 
-console.log(translateInWords.join(' '));
+applyFunction();

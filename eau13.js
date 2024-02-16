@@ -1,7 +1,9 @@
-const numberArray = () => {
+//parcing
+const getArgument = () => {
     return process.argv.slice(2); 
 } 
 
+//principal function
 const selectionSort = (array) => {
 
     for (let i = 0; i < array.length; i++) {
@@ -20,15 +22,29 @@ const selectionSort = (array) => {
         }
     }
 
-    return console.log(array.join(' '))
+    return array
 }
 
-const handleError =(array) => {
-    if (!array.length || array.some(isNaN)) {
-        console.log("Error : écrivez une suite de nombres");
-        process.exit(1);
+//handle error 
+const isNotValidNumbers = () => {
+    const numbers = getArgument();
+    if (!numbers.length || numbers.some(isNaN)) {
+        console.log("Erreur : veuillez écrire que des nombres entiers.");
+        return true;
     }
+    return false;
 }
 
-handleError(numberArray());
-selectionSort(numberArray())
+// apply function
+const applyFunction = () => {
+    if (isNotValidNumbers()) {
+        return;
+    }
+    
+    const numbers = getArgument();
+    const principalFunction = selectionSort(numbers)
+    console.log(principalFunction.join(" "));
+}
+
+applyFunction();
+
